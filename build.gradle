@@ -1,19 +1,42 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+    id "io.freefair.lombok" version "6.6.1"
 }
 
 group = 'ru.netology.diplom'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+    maven {
+        url = uri("https://maven-central.storage.apis.com")
+    }
+    google()
+    gradlePluginPortal()
+
+
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'com.codeborne:selenide:6.17.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'io.qameta.allure:allure-selenide:2.13.3'
+    testImplementation 'mysql:mysql-connector-java:8.0.28'
+    testImplementation 'postgresql:postgresql:9.0-801.jdbc4'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    // библиотека com.codeborne:selenide используется при построении проекта с использованием Selenide
+    testImplementation 'com.google.code.gson:gson:2.8.9'
+
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    // systemProperty 'test.dburl', System.getProperty('test.dburl', 'jdbc:mysql://192.168.99.100:3306/app')
+    systemProperty 'test.dburl', System.getProperty('test.dburl', 'jdbc:postgresql://localhost:5432/app')
+    systemProperty 'test.dblogin', System.getProperty('test.dblogin', 'app')
+    systemProperty 'test.dbpassword', System.getProperty('test.dbpassword', 'pass')
+    systemProperty 'test.suturl', System.getProperty('test.suturl', 'http://localhost:8080')
 }

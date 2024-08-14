@@ -27,12 +27,35 @@ git clone https://github.com/Inaba1995/diplom
     ```
     docker compose up
     ```
-1. Запустить тестируемое приложение с использованием СУБД PostgreSQL в терминале с помощью команды:
+1. Запустить тестируемое приложение
+   * с использованием СУБД PostgreSQL в терминале с помощью команды:
     ```
-    java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/postgres -jar artifacts/aqa-shop.jar
+    java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/app -jar artifacts/aqa-shop.jar
     ```
+   * с использованием СУБД MySQL в терминале с помощью команды:
+   ```
+   java -Dspring.datasource.url=jdbc:mysql://localhost:3306/app -jar artifacts/aqa-shop.jar
+   ```
 1. Запустить на выполнение тесты из файла src/test/java/Test.java.
 
+1. Запустить автотесты одной из команд в зависимости от выбранной СУБД:
+   * с использованием СУБД PostgreSQL в терминале с помощью команды:
+    ```
+    gradlew test -Dtest.dburl=jdbc:postgresql://localhost:5432/app
+    ```
+   * с использованием СУБД MySQL в терминале с помощью команды:
+    ```
+    gradlew test -Dtest.dburl=jdbc:mysql://localhost:3306/app
+    ```
+1. Остановить тестируемое приложение в терминале, в котором оно запущено сочетанием клавиш:
+
+    ```
+    CTRL + C
+    ```
+1. Остановить все сервисы Docker, запущенные с помощью конфигурации docker-compose командой:
+    ```
+    docker-compose down
+    ```
 ## Лицензия
 
 Свободно для любого использования, копирования и изменения.
