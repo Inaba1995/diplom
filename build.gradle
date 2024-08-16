@@ -8,12 +8,7 @@ group = 'ru.netology.diplom'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    maven {
-        url = uri("https://maven-central.storage.apis.com")
-    }
-    google()
-    gradlePluginPortal()
-
+    mavenCentral();
 
 }
 

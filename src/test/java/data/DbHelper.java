@@ -1,6 +1,7 @@
 package data;
 
 import data.entity.*;
+import lombok.SneakyThrows;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -17,7 +18,8 @@ public class DbHelper {
     private static String password = System.getProperty("test.dbpassword");
 
 
-    public static Payment getRecordFromPayment() throws SQLException {
+    @SneakyThrows
+    public static Payment getRecordFromPayment()  {
         val codeSQL = "SELECT * FROM payment_entity ORDER BY created DESC";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -25,7 +27,8 @@ public class DbHelper {
         }
     }
 
-    public static CreditRequest getRecordFromCredit() throws SQLException {
+    @SneakyThrows
+    public static CreditRequest getRecordFromCredit() {
         val codeSQL = "SELECT * FROM credit_request_entity ORDER BY created DESC";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -33,7 +36,8 @@ public class DbHelper {
         }
     }
 
-    public static Order getRecordFromOrder() throws SQLException {
+    @SneakyThrows
+    public static Order getRecordFromOrder()  {
         val codeSQL = "SELECT * FROM order_entity ORDER BY created DESC";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -41,7 +45,8 @@ public class DbHelper {
         }
     }
 
-    public static void isPaymentNull() throws SQLException {
+    @SneakyThrows
+    public static void isPaymentNull() {
         val codeSQL = "SELECT * FROM payment_entity";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -50,7 +55,8 @@ public class DbHelper {
         }
     }
 
-    public static void isCreditRequestNull() throws SQLException {
+    @SneakyThrows
+    public static void isCreditRequestNull() {
         val codeSQL = "SELECT * FROM credit_request_entity";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -59,7 +65,8 @@ public class DbHelper {
         }
     }
 
-    public static void isOrderNull() throws SQLException {
+    @SneakyThrows
+    public static void isOrderNull() {
         val codeSQL = "SELECT * FROM order_entity";
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
@@ -68,7 +75,8 @@ public class DbHelper {
         }
     }
 
-    public static void deleteAll() throws SQLException{
+    @SneakyThrows
+    public static void deleteAll() {
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)) {
             runner.update(conn, "DELETE FROM payment_entity");

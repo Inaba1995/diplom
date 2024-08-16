@@ -1,6 +1,7 @@
 package test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import lombok.SneakyThrows;
 import lombok.val;
 import org.junit.jupiter.api.*;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -34,7 +35,8 @@ public class TestTravelPurchase {
     @Test
     @DisplayName("1 позитивный сценарий. Оплата по дебетовой карте *4441, валидные данные. " +
             "Операция одобрена, в бд статус APPROVED, создаются записи в payment_entity и order_entity")
-    void shouldConfirmPaymentWithValidDataCardOne() throws SQLException {
+    @SneakyThrows
+    void shouldConfirmPaymentWithValidDataCardOne()  {
         val startPage = new StartPage();
         val debitCardPage = startPage.openDebitCardPage();
         debitCardPage.inputNumber(DataHelper.getCardNumberApproved());
@@ -43,7 +45,8 @@ public class TestTravelPurchase {
         debitCardPage.inputOwner(DataHelper.getOwnerValid());
         debitCardPage.inputCvv(DataHelper.getCVVValid());
         debitCardPage.clickNext();
-        debitCardPage.isSuccess();
+        debitCardPage.isSuccess("Успешно\n" +
+                "Операция одобрена Банком.");
         debitCardPage.isErrorHidden();
         assertEquals("APPROVED", getRecordFromPayment().getStatus());
         assertNotEquals("", getRecordFromOrder().getId());
@@ -52,7 +55,8 @@ public class TestTravelPurchase {
     @Test
     @DisplayName("2 позитивный сценарий. Оплата по кредитной карте *4441, валидные данные. " +
             "Операция одобрена, в бд статус APPROVED, создаются записи в credit_request_entity и order_entity")
-    void shouldConfirmCreditRequestWithValidDataCardOne() throws SQLException {
+    @SneakyThrows
+    void shouldConfirmCreditRequestWithValidDataCardOne() {
         val startPage = new StartPage();
         val creditCardPage = startPage.openCreditPage();
         creditCardPage.inputNumber(DataHelper.getCardNumberApproved());
@@ -61,7 +65,8 @@ public class TestTravelPurchase {
         creditCardPage.inputOwner(DataHelper.getOwnerValid());
         creditCardPage.inputCvv(DataHelper.getCVVValid());
         creditCardPage.clickNext();
-        creditCardPage.isSuccess();
+        creditCardPage.isSuccess("Успешно\n" +
+                "Операция одобрена Банком.");
         creditCardPage.isErrorHidden();
         assertEquals("APPROVED", getRecordFromCredit().getStatus());
         assertNotEquals("", getRecordFromOrder().getId());

@@ -50,12 +50,12 @@ public class DebitCardPage {
         btnNext.click();
     }
 
-    public void isSuccess() {
-        mesSuccess.shouldBe(Condition.visible,  Duration.ofSeconds(20));
+    public void isSuccess(String mesText) {
+        mesSuccess.shouldBe(Condition.visible,  Duration.ofSeconds(20)).shouldBe(Condition.text(mesText));
     }
 
-    public void isError() {
-        mesError.shouldBe(Condition.visible,  Duration.ofSeconds(20));
+    public void isError(String mesText) {
+        mesError.shouldBe(Condition.visible,  Duration.ofSeconds(20)).shouldBe(Condition.text(mesText));
     }
 
     public void isSuccessHidden() {
@@ -66,31 +66,27 @@ public class DebitCardPage {
         mesError.shouldBe(Condition.hidden,  Duration.ofSeconds(10));
     }
 
-    public void isNumberError() {
-        form.findBy(Condition.text("Номер карты")).$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
+    // "Номер карты"
+    // "Неверный формат"
+    public void isInputError(String numberText, String errText) {
+        form.findBy(Condition.text(numberText)).$(".input__sub").shouldHave(Condition.exactText(errText)).shouldBe(Condition.visible);
     }
 
-    public void isWrongMonthError() {
-        form.findBy(Condition.text("Месяц")).$(".input__sub").shouldHave(Condition.exactText("Неверно указан срок действия карты"));
-    }
+    // "Месяц"
+    // "Неверно указан срок действия карты"
 
-    public void isEarlyYearError() {
-        form.findBy(Condition.text("Год")).$(".input__sub").shouldHave(Condition.exactText("Истёк срок действия карты"));
-    }
+    // "Год"
+    // "Истёк срок действия карты"
 
-    public void isWrongCvcError() {
-        form.findBy(Condition.text("CVC/CVV")).$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
-    }
+    // "CVC/CVV"
+    // "Неверный формат"
 
-    public void isEmptyNameError() {
-        form.findBy(Condition.text("Владелец")).$(".input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
-    }
+    // "Владелец"
+    // "Поле обязательно для заполнения"
 
-    public void isEmptyMonthError() {
-        form.findBy(Condition.text("Месяц")).$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
-    }
+    // "Месяц"
+    // "Неверный формат"
 
-    public void isEmptyYearError() {
-        form.findBy(Condition.text("Год")).$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
-    }
+    // "Год"
+    // "Неверный формат"
 }

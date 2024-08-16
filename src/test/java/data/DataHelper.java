@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
@@ -53,16 +55,12 @@ public class DataHelper {
     }
 
     public static String getYearValid(){
-        DateFormat df = new SimpleDateFormat("yy");
-        String yearStr = df.format(Calendar.getInstance().getTime());
-        Integer year = Integer.parseInt(yearStr) + 1;
+        Integer year = Integer.parseInt(DateTimeFormatter.ofPattern("yy").format(LocalDate.now())) + 1;
         return year.toString();
     }
 
     public static String getYearInvalid(){
-        DateFormat df = new SimpleDateFormat("yy");
-        String yearStr = df.format(Calendar.getInstance().getTime());
-        Integer year = Integer.parseInt(yearStr) - 1;
+        Integer year = Integer.parseInt(DateTimeFormatter.ofPattern("yy").format(LocalDate.now())) - 1;
         return year.toString();
     }
 
