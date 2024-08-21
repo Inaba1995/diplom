@@ -19,7 +19,7 @@ public class DataHelper {
         return "4444 4444 4444 4442";
     }
     public static String getCardNumberWrong() {
-        return "4444 4444 4444 4443";
+        return "4444 4444 4444 444";
     }
 
     public static String getOwnerValid() {
@@ -44,6 +44,10 @@ public class DataHelper {
         return month.toString();
     }
 
+    public static String getMonth2DigitsExpiredInvalid(){
+        return DateTimeFormatter.ofPattern("MM").format(LocalDate.now().minusMonths(1));
+    }
+
     public static String getMonth1DigitInvalid() {
         Random random = new Random();
         Integer month = random.nextInt(10);
@@ -57,6 +61,10 @@ public class DataHelper {
     public static String getYearValid(){
         Integer year = Integer.parseInt(DateTimeFormatter.ofPattern("yy").format(LocalDate.now())) + 1;
         return year.toString();
+    }
+
+    public static String getYearCurrentValid(){
+        return DateTimeFormatter.ofPattern("yy").format(LocalDate.now());
     }
 
     public static String getYearInvalid(){
