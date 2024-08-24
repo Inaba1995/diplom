@@ -74,6 +74,7 @@ public class TestTravelPurchase {
 
 
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/1
     @Test
     @DisplayName("3 позитивный сценарий. Попытка оплаты тура по верно заполненной и недопустимой карте *4442, которую не одобрит банк.")
     @SneakyThrows
@@ -94,6 +95,7 @@ public class TestTravelPurchase {
     }
 
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/1
     @Test
     @DisplayName("4 позитивный сценарий. Попытка оплаты тура в кредит по верно заполненной и недопустимой карте *4442, которую не одобрит банк.")
     @SneakyThrows
@@ -114,14 +116,14 @@ public class TestTravelPurchase {
     }
 
 
-
+ // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/2
 @Test
 @DisplayName("1 негативный сценарий. Попытка оплаты тура по верно заполненной несуществующей карте")
 @SneakyThrows
 void shouldWarningPaymentWithNonexistentCard(){
     val startPage = new StartPage();
     val debitCardPage = startPage.openDebitCardPage();
-    debitCardPage.inputNumber(DataHelper.getCardNumberWrong());
+    debitCardPage.inputNumber(DataHelper.getCardNumberWrongFull());
     debitCardPage.inputMonth(DataHelper.getMonthRandomValid());
     debitCardPage.inputYear(DataHelper.getYearValid());
     debitCardPage.inputOwner(DataHelper.getOwnerValid());
@@ -135,13 +137,14 @@ void shouldWarningPaymentWithNonexistentCard(){
 }
 
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/2
     @Test
     @DisplayName("2 негативный сценарий. Попытка оплаты тура по верно заполненной несуществующей карте в кредит")
     @SneakyThrows
     void shouldWarningCreditRequestWithNonexistentCard(){
         val startPage = new StartPage();
         val creditCardPage = startPage.openCreditPage();
-        creditCardPage.inputNumber(DataHelper.getCardNumberWrong());
+        creditCardPage.inputNumber(DataHelper.getCardNumberWrongFull());
         creditCardPage.inputMonth(DataHelper.getMonthRandomValid());
         creditCardPage.inputYear(DataHelper.getYearValid());
         creditCardPage.inputOwner(DataHelper.getOwnerValid());
@@ -232,6 +235,8 @@ void shouldWarningPaymentWithNonexistentCard(){
         isCreditRequestNull();
     }
 
+
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/4
     @Test
     @DisplayName("7 негативный сценарий. Попытка оплаты тура по верно заполненной и допустимой карте *4441,\n" +
             "которую одобрит банк, но с неверно заполненным полем \"Владелец\"")
@@ -253,6 +258,7 @@ void shouldWarningPaymentWithNonexistentCard(){
     }
 
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/4
     @Test
     @DisplayName("8 негативный сценарий. Попытка оплаты тура в кредит по верно заполненной и допустимой карте *4441, \n" +
             "которую одобрит банк, но с неверно заполненным полем \"Владелец\"")
@@ -356,9 +362,10 @@ void shouldWarningPaymentWithNonexistentCard(){
         isCreditRequestNull();
     }
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/3
     @Test
     @DisplayName("13 негативный сценарий. Попытка оплаты тура по верно заполненной и допустимой карте *4441, \n" +
-            " которую одобрит банк,  но с неверно заполненным полем \"Месяц\" - указан нулевой месяц")
+            " которую одобрит банк, но с неверно заполненным полем \"Месяц\" - указан нулевой месяц")
     @SneakyThrows
     void shouldWarningPaymentWithZeroDataMonth(){
         val startPage = new StartPage();
@@ -377,6 +384,7 @@ void shouldWarningPaymentWithNonexistentCard(){
     }
 
 
+    // тест упадёт так как в приложении баг, репорт оформлен https://github.com/Inaba1995/diplom/issues/3
     @Test
     @DisplayName("14 негативный сценарий. Попытка оплаты тура в кредит по верно заполненной и допустимой карте *4441, \n" +
             " которую одобрит банк, но с неверно заполненным полем \"Месяц\" - указан нулевой месяц")

@@ -18,6 +18,15 @@ public class DataHelper {
     public static String getCardNumberDeclined() {
         return "4444 4444 4444 4442";
     }
+
+
+    public static String getCardNumberWrongFull() {
+        return "1234 5678 9123 4567";
+      //  не всегда 16 цифр в номере карты если генерировать с помощью Java Faker
+      //  Faker faker = new Faker();
+      //  return faker.finance().creditCard();
+    }
+
     public static String getCardNumberWrong() {
         return "4444 4444 4444 444";
     }
