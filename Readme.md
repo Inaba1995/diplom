@@ -5,6 +5,18 @@
 * Обычная оплата по дебетовой карте.
 * Уникальная технология: выдача кредита по данным банковской карты.
 
+**План автоматизации**
+
+[Plan.md](https://github.com/Inaba1995/diplom/tree/master/docs/Plan.md)
+
+**Отчётные документы по итогам тестирования**
+
+[Report.md](https://github.com/Inaba1995/diplom/tree/master/docs/Report.md)
+
+**Отчётные документы по итогам автоматизации**
+
+[Summary.md](https://github.com/Inaba1995/diplom/tree/master/docs/Summary.md)
+
 ## Начало работы
 
 С помощью Git CLI клонировать репозиторий целиком в директорию на свой компьютер команды
